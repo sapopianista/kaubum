@@ -1,0 +1,20 @@
+{
+  "name": "obsidiana-lab",
+  "version": "1.0.0",
+  "description": "E-commerce didático (Red Team vs Blue Team) com defesas OWASP Top 10",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": ">=11.7.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "gsap": "^3.12.5",
+    "helmet": "^8.0.0"
+  }
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kaubum — Marketplace</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="hdr">
+    <a class="brand" href="/">Kaubum</a>
+    <div class="actions">
+      <button class="btn mag" id="btn-account" type="button">Entrar</button>
+      <button class="btn pri mag" id="btn-cart" type="button">Carrinho <span id="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>
+        <span class="ln"><span>Equipamento para</span></span>
+        <span class="ln"><span>quem trabalha de madrugada.</span></span>
+      </h1>
+      <p class="mute">Teclados, telas e luz que não cansam os olhos. Entrega para todo o Brasil.</p>
+    </section>
+    <div id="chips" class="chips" role="group" aria-label="Categorias"></div>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <div id="scrim" class="scrim"></div>
+
+  <aside id="cart" class="drawer" aria-label="Carrinho">
+    <div class="dh"><h2>Carrinho</h2><button class="x" type="button" data-close aria-label="Fechar">×</button></div>
+    <div id="cart-body" class="db"></div>
+    <div id="cart-foot" class="df"></div>
+  </aside>
+
+  <aside id="panel" class="drawer" aria-label="Minha conta">
+    <div class="dh"><h2>Minha conta</h2><button class="x" type="button" data-close aria-label="Fechar">×</button></div>
+    <div id="tabs" class="tabs" role="tablist"></div>
+    <div id="panel-body" class="db"></div>
+  </aside>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="dh"><h2 id="modal-title"></h2><button class="x" type="button" data-close aria-label="Fechar">×</button></div>
+    <div id="modal-body" class="db"></div>
+  </div>
+
+  <div class="badge">
+    <ul id="badge-list" hidden>
+      <li>Dados sensíveis cifrados com AES-256-GCM</li>
+      <li>Senhas com bcrypt (12 rounds)</li>
+      <li>Rate limit: 5 tentativas / 10 min</li>
+      <li>CSP restrita e proteção CSRF</li>
+    </ul>
+    <button id="badge-btn" type="button" aria-expanded="false"><i class="dot"></i>AES-256-GCM · Rate limit ativo</button>
+  </div>
+
+  <script src="/vendor/gsap.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
