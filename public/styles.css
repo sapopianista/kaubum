@@ -56,12 +56,12 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 120p
 .drawer, .modal { position: fixed; z-index: 11; background: var(--surface); border: 1px solid var(--line); visibility: hidden; display: flex; flex-direction: column; }
 .drawer.open, .modal.open { visibility: visible; }
 .drawer { top: 0; right: 0; height: 100%; width: min(460px, 100%); border-width: 0 0 0 1px; }
-.modal { top: 50%; left: 50%; translate: -50% -50%; width: min(520px, calc(100% - 24px)); max-height: 92vh; border-radius: 16px; }
-.dh { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.modal { inset: 0; margin: auto; width: min(560px, calc(100% - 24px)); height: fit-content; max-height: calc(100vh - 32px); border-radius: 16px; overflow: hidden; }
+.dh { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
 .dh h2 { font-size: 18px; letter-spacing: -.01em; }
 .x { background: none; border: 0; font-size: 26px; line-height: 1; color: var(--mute); padding: 0 6px; }
 .x:hover { color: var(--text); }
-.db { padding: 20px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.db { padding: 20px; overflow-y: auto; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; }
 .df { padding: 16px 20px 20px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
 .df:empty { display: none; }
 
@@ -79,7 +79,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 120p
 .field span { color: var(--mute); font-size: 13px; }
 .field input, .field textarea { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; }
 .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
-form { display: flex; flex-direction: column; gap: 12px; }
+form { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .links { display: flex; gap: 16px; flex-wrap: wrap; }
 .lnk { background: none; border: 0; color: var(--accent-2); padding: 0; text-decoration: underline; text-underline-offset: 3px; }
