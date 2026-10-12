@@ -1,8 +1,18 @@
 :root {
-  --bg: #09090b; --surface: #121215; --surface2: #1a1a1f; --line: rgba(255,255,255,.08);
-  --text: #ececf1; --mute: #8b8b98; --accent: #8b5cf6; --accent-2: #a78bfa; --ok: #4ade80; --bad: #f87171;
+  /* Paleta KauBuM Minimalista: Fundo azul super escuro, destaques em Laranja e Azul claro */
+  --bg: #020816; 
+  --surface: #0a162e; 
+  --surface2: #102142; 
+  --line: rgba(255,255,255,.08);
+  --text: #f8fafc; 
+  --mute: #94a3b8; 
+  --accent: #ff6500; 
+  --accent-2: #3b82f6; 
+  --ok: #4ade80; 
+  --bad: #f87171;
   --font: 'Space Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
+
 * { box-sizing: border-box; margin: 0; }
 html { color-scheme: dark; }
 body { background: var(--bg); color: var(--text); font: 15px/1.5 var(--font); min-height: 100vh; }
@@ -15,11 +25,19 @@ button { cursor: pointer; }
 .hdr { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center;
   padding: 14px clamp(16px, 4vw, 40px); background: rgba(9,9,11,.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .brand { font-weight: 700; font-size: 20px; letter-spacing: -.02em; color: var(--text); text-decoration: none; }
+.brand img {
+  display: block;
+  max-height: 200px;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  margin: -60px -0;
+}
 .actions { display: flex; gap: 10px; }
 .btn { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 16px; transition: border-color .2s, background .2s; }
 .btn:hover:not(:disabled) { border-color: rgba(255,255,255,.22); }
 .btn.pri { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
-.btn.pri:hover:not(:disabled) { background: #7c4df0; border-color: #7c4df0; }
+.btn.pri:hover:not(:disabled) { background: #e05800; border-color: #e05800; }
 .btn:disabled { opacity: .5; cursor: not-allowed; }
 .btn.block { width: 100%; }
 
