@@ -3,61 +3,187 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kaubum — Marketplace</title>
-  <link rel="icon" href="data:,">
+  <meta name="description" content="KauBuM Suprimentos & Tecnologia — E-commerce corporativo e didático com arquitetura acessível WCAG 2.2 e defesas OWASP Top 10.">
+  <meta name="theme-color" content="#020816">
+  <meta property="og:title" content="KauBuM — Suprimentos & Tecnologia">
+  <meta property="og:description" content="Catálogo corporativo com segurança de ponta a ponta (AES-256-GCM, Bcrypt, CSRF, CSP e Rate Limit).">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/KauBuM_logo.png">
+  <title>KauBuM — Suprimentos &amp; Tecnologia</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header class="hdr">
-    <a class="brand" href="/">
-      <img src="/KauBuM_logo.png" alt="KauBuM">
-    </a>
-    <div class="actions">
-      <button class="btn mag" id="btn-account" type="button">Entrar</button>
-      <button class="btn pri mag" id="btn-cart" type="button">Carrinho <span id="cart-count">0</span></button>
+  <a class="skip-link" href="#main-content">Pular para o conteúdo da tela ativa</a>
+
+  <header class="hdr" id="site-header" role="banner">
+    <div class="hdr-top">
+      <a class="brand" href="#catalogo" id="brand-link" aria-label="KauBuM — Voltar ao Catálogo">
+        <img src="/KauBuM_logo.png" alt="Logotipo KauBuM">
+      </a>
+
+      <div class="hdr-status">
+        <span id="user-pill" class="status-pill" aria-live="polite">Visitante</span>
+        <button class="btn" id="btn-account" type="button" aria-label="Acessar Minha Conta">Entrar</button>
+        <button class="btn pri" id="btn-cart" type="button" aria-label="Ir para o Carrinho">
+          Carrinho <span id="cart-count" class="cart-badge" aria-live="polite" aria-atomic="true">0</span>
+        </button>
+      </div>
     </div>
+
+    <nav class="primary-nav" aria-label="Seções principais do sistema">
+      <div id="main-tabs" class="nav-tabs" role="tablist" aria-label="Telas do sistema">
+        <button id="tab-btn-catalogo" class="nav-tab on" role="tab" type="button"
+          aria-selected="true" aria-controls="view-catalogo" data-view="catalogo">
+          <span class="tab-label">1. Catálogo</span>
+          <kbd class="kbd-hint" aria-hidden="true">Alt+1</kbd>
+        </button>
+        <button id="tab-btn-carrinho" class="nav-tab" role="tab" type="button"
+          aria-selected="false" aria-controls="view-carrinho" data-view="carrinho" tabindex="-1">
+          <span class="tab-label">2. Carrinho &amp; Checkout</span>
+          <span id="nav-cart-badge" class="tab-pill" aria-hidden="true">0</span>
+          <kbd class="kbd-hint" aria-hidden="true">Alt+2</kbd>
+        </button>
+        <button id="tab-btn-conta" class="nav-tab" role="tab" type="button"
+          aria-selected="false" aria-controls="view-conta" data-view="conta" tabindex="-1">
+          <span class="tab-label">3. Minha Conta</span>
+          <kbd class="kbd-hint" aria-hidden="true">Alt+3</kbd>
+        </button>
+        <button id="tab-btn-vender" class="nav-tab" role="tab" type="button"
+          aria-selected="false" aria-controls="view-vender" data-view="vender" tabindex="-1">
+          <span class="tab-label">4. Anunciar Produto</span>
+          <kbd class="kbd-hint" aria-hidden="true">Alt+4</kbd>
+        </button>
+        <button id="tab-btn-seguranca" class="nav-tab" role="tab" type="button"
+          aria-selected="false" aria-controls="view-seguranca" data-view="seguranca" tabindex="-1">
+          <span class="tab-label">5. Auditoria &amp; Segurança</span>
+          <kbd class="kbd-hint" aria-hidden="true">Alt+5</kbd>
+        </button>
+      </div>
+    </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>
-        <span class="ln"><span>Maior e-commerce de</span></span>
-        <span class="ln"><span>tecnologia da nossa sala.</span></span>
-      </h1>
-      <p class="mute">Hardware, periféricos e jogos com entrega expressa (simulada) para você.</p>
+  <main id="main-content" tabindex="-1">
+    <!-- ==================== TELA 1: CATÁLOGO & VITRINE ==================== -->
+    <section id="view-catalogo" class="view-panel active" role="tabpanel" aria-labelledby="tab-btn-catalogo">
+      <div class="view-header">
+        <div>
+          <span class="eyebrow">Suprimentos Corporativos &amp; Informática</span>
+          <h1>Catálogo de Produtos</h1>
+          <p class="mute">Explore itens de escritório, informática e mobiliário com cálculo de frete regional no servidor.</p>
+        </div>
+      </div>
+
+      <section class="catalog-controls" aria-label="Filtros e busca do catálogo">
+        <div class="toolbar">
+          <div class="search-box">
+            <label for="search-input" class="sr-only">Buscar produtos (atalho tecla /)</label>
+            <input id="search-input" type="search" placeholder="Buscar por nome, categoria ou descrição… (Pressione / para focar)" autocomplete="off">
+            <button id="search-clear" class="search-clear" type="button" aria-label="Limpar busca" hidden>
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="sort-box">
+            <label for="sort-select" class="mute sort-label">Ordenar por:</label>
+            <select id="sort-select">
+              <option value="relevancia">Padrão do Catálogo</option>
+              <option value="menor-preco">Menor preço</option>
+              <option value="maior-preco">Maior preço</option>
+              <option value="nome-az">Ordem Alfabética (A–Z)</option>
+            </select>
+          </div>
+        </div>
+        <div class="chips-bar">
+          <div id="chips" class="chips" role="group" aria-label="Filtrar por categoria"></div>
+          <span id="results-count" class="mute results-count" aria-live="polite"></span>
+        </div>
+      </section>
+
+      <section aria-label="Lista de produtos">
+        <div id="grid" class="grid" aria-busy="true">
+          <article class="card skel" aria-hidden="true"><div class="thumb"></div><div class="cbody"><div class="sk-line sm"></div><div class="sk-line md"></div><div class="sk-line lg"></div></div></article>
+          <article class="card skel" aria-hidden="true"><div class="thumb"></div><div class="cbody"><div class="sk-line sm"></div><div class="sk-line md"></div><div class="sk-line lg"></div></div></article>
+          <article class="card skel" aria-hidden="true"><div class="thumb"></div><div class="cbody"><div class="sk-line sm"></div><div class="sk-line md"></div><div class="sk-line lg"></div></div></article>
+          <article class="card skel" aria-hidden="true"><div class="thumb"></div><div class="cbody"><div class="sk-line sm"></div><div class="sk-line md"></div><div class="sk-line lg"></div></div></article>
+        </div>
+      </section>
     </section>
-    <div id="chips" class="chips" role="group" aria-label="Categorias"></div>
-    <div id="grid" class="grid"></div>
+
+    <!-- ==================== TELA 2: CARRINHO & CHECKOUT GUIADO ==================== -->
+    <section id="view-carrinho" class="view-panel" role="tabpanel" aria-labelledby="tab-btn-carrinho" hidden>
+      <div class="view-header">
+        <div>
+          <span class="eyebrow">Fluxo de Compra Seguro</span>
+          <h1>Carrinho &amp; Finalização de Pedido</h1>
+          <p class="mute">Revise as quantidades, simule o frete por estado (UF) e conclua sua compra com validação atômica de estoque.</p>
+        </div>
+      </div>
+
+      <div class="stepper-bar" aria-label="Etapas da compra">
+        <div class="step-item on"><span class="step-num">1</span> Revisão de Itens</div>
+        <div class="step-sep" aria-hidden="true">→</div>
+        <div class="step-item on"><span class="step-num">2</span> Simulação de Frete (UF)</div>
+        <div class="step-sep" aria-hidden="true">→</div>
+        <div class="step-item on"><span class="step-num">3</span> Pagamento &amp; Confirmação</div>
+      </div>
+
+      <div id="cart-screen-content" class="split-layout"></div>
+    </section>
+
+    <!-- ==================== TELA 3: MINHA CONTA (PERFIL, LOGIN E PEDIDOS) ==================== -->
+    <section id="view-conta" class="view-panel" role="tabpanel" aria-labelledby="tab-btn-conta" hidden>
+      <div class="view-header">
+        <div>
+          <span class="eyebrow">Central do Cliente</span>
+          <h1 id="account-main-title">Minha Conta</h1>
+          <p class="mute">Gerencie seus dados cadastrais cifrados em repouso (AES-256-GCM) e acompanhe o status de entrega dos seus pedidos.</p>
+        </div>
+      </div>
+
+      <div id="account-subtabs" class="subtabs" role="tablist" aria-label="Subseções da conta"></div>
+      <div id="account-screen-content" class="panel-surface"></div>
+    </section>
+
+    <!-- ==================== TELA 4: CENTRAL DE VENDAS (ANUNCIAR PRODUTO) ==================== -->
+    <section id="view-vender" class="view-panel" role="tabpanel" aria-labelledby="tab-btn-vender" hidden>
+      <div class="view-header">
+        <div>
+          <span class="eyebrow">Marketplace Corporativo</span>
+          <h1>Publicar Novo Produto</h1>
+          <p class="mute">Cadastre novos itens no catálogo. Todos os campos passam por sanitização Unicode NFKC e validação de preço no servidor.</p>
+        </div>
+      </div>
+
+      <div id="vender-screen-content" class="split-layout"></div>
+    </section>
+
+    <!-- ==================== TELA 5: AUDITORIA & SEGURANÇA (BLUE TEAM HUB) ==================== -->
+    <section id="view-seguranca" class="view-panel" role="tabpanel" aria-labelledby="tab-btn-seguranca" hidden>
+      <div class="view-header">
+        <div>
+          <span class="eyebrow">Blue Team &amp; Conformidade OWASP Top 10</span>
+          <h1>Painel de Segurança &amp; Auditoria de Banco</h1>
+          <p class="mute">Resumo técnico das defesas ativas no sistema e consultas SQL prontas para inspeção prática no MySQL Workbench.</p>
+        </div>
+      </div>
+
+      <div id="seguranca-screen-content"></div>
+    </section>
   </main>
 
-  <div id="scrim" class="scrim"></div>
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-status">
+        <span class="dot" aria-hidden="true"></span>
+        <span><strong>Defesas Ativas:</strong> AES-256-GCM · Bcrypt (12 rounds) · Rate Limit · Anti-CSRF · CSP Restrita</span>
+      </div>
+      <div class="mute">
+        Atalhos de acessibilidade: <kbd>Alt+1</kbd> a <kbd>Alt+5</kbd> para alternar telas · <kbd>/</kbd> para buscar produtos
+      </div>
+    </div>
+  </footer>
 
-  <aside id="cart" class="drawer" aria-label="Carrinho">
-    <div class="dh"><h2>Carrinho</h2><button class="x" type="button" data-close aria-label="Fechar">×</button></div>
-    <div id="cart-body" class="db"></div>
-    <div id="cart-foot" class="df"></div>
-  </aside>
-
-  <aside id="panel" class="drawer" aria-label="Minha conta">
-    <div class="dh"><h2>Minha conta</h2><button class="x" type="button" data-close aria-label="Fechar">×</button></div>
-    <div id="tabs" class="tabs" role="tablist"></div>
-    <div id="panel-body" class="db"></div>
-  </aside>
-
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="dh"><h2 id="modal-title"></h2><button class="x" type="button" data-close aria-label="Fechar">×</button></div>
-    <div id="modal-body" class="db"></div>
-  </div>
-
-  <div class="badge">
-    <ul id="badge-list" hidden>
-      <li>Dados sensíveis cifrados com AES-256-GCM</li>
-      <li>Senhas com bcrypt (12 rounds)</li>
-      <li>Rate limit: 5 tentativas / 10 min</li>
-      <li>CSP restrita e proteção CSRF</li>
-    </ul>
-    <button id="badge-btn" type="button" aria-expanded="false"><i class="dot"></i>AES-256-GCM · Rate limit ativo</button>
-  </div>
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-relevant="additions"></div>
 
   <script src="/vendor/gsap.min.js"></script>
   <script src="/app.js"></script>
